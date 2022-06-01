@@ -25,17 +25,11 @@ public class Pathfinding : MonoBehaviour
         Node startNode = grid.NodeFromWorldPoint(startPos);
         Node targetNode = grid.NodeFromWorldPoint(targetPos);
 
-        // сэт с открытыми узлами
         List<Node> openSet = new List<Node>();
         
-        // хеш-сэт с закрытыми узлами
-        // хэш-сэт позволяет быстро определить,
-        // есть ли определенный элемент в коллекции или нет
-        // (потому что использует индекс из хэш-кода элемента)
         HashSet<Node> closedSet = new HashSet<Node>();
         
         openSet.Add(startNode);
-        // пока открытых узлов > 0
         while (openSet.Count > 0)
         {
             Node currentNode = openSet[0];

@@ -19,8 +19,7 @@ public class Grid : MonoBehaviour
     private void Start()
     {
         nodeDiameter = nodeRadius * 2;
-        // кол-во узлов можно вместить 
-        // при диаметре = 1, сайз = сколько установил в инспекторе 
+
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
         gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
         CreateGrid();
@@ -67,24 +66,12 @@ public class Grid : MonoBehaviour
 
     public Node NodeFromWorldPoint(Vector3 worldPositionPlayer)
     {
-        /*
-         * если worldPositionplayer.x = -10, то
-         * percenteX = 0.16
-         * Clamp01(percenteX) = 0.16
-         * x = 5
-         */
+
         float percentX = (worldPositionPlayer.x + gridWorldSize.x / 2) / gridWorldSize.x;
         float percentY = (worldPositionPlayer.z + gridWorldSize.y / 2) / gridWorldSize.y;
-        // пример по оси Х:
-        // 0 - левый край грида
-        // 1 - правый край грида
-        // как рамки для значения transform.position игрока
-        // то есть позиция может быть сколь угодно большой или маленькой,
-        // но по итогу она будет 0 или 1 в рамках грида
         percentX = Mathf.Clamp01(percentX);
         percentY = Mathf.Clamp01(percentY);
         
-        // конкретные координаты нода для заданного вектора3 worldPositionPlayer
         int x = Mathf.RoundToInt((gridSizeX - 1) * percentX);
         int y = Mathf.RoundToInt((gridSizeY - 1) * percentY);
         return grid[x, y];
