@@ -1,2 +1,2 @@
 # A-Pathfinding
- A Pathfinding algorithm
+ A* Pathfinding algorithm
